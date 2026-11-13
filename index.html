@@ -587,13 +587,13 @@ footer .wrap{padding-block:24px;display:flex;flex-wrap:wrap;justify-content:spac
             <div class="gauge"><span>humidité</span><i><u></u></i><b>63 %</b></div>
             <div class="gauge"><span>température</span><i><u></u></i><b>24 °C</b></div>
             <div class="gauge"><span>luminosité</span><i><u></u></i><b>760 lx</b></div>
-            <div class="pump"><span class="led"></span>arrosage automatique<em>veille</em></div>
+            <div class="pump"><span class="led"></span>goutte-à-goutte<em>veille</em></div>
           </div>
           <div class="card-body">
             <span class="kind">IoT · Arduino</span>
             <h3>Serre automatique</h3>
-            <p>Capteurs d'humidité, de température et de luminosité qui pilotent l'arrosage, avec envoi des données en temps réel.</p>
-            <div class="tags"><span class="tag">Arduino</span><span class="tag">capteurs</span><span class="tag">temps réel</span></div>
+            <p>Capteurs qui pilotent le goutte-à-goutte et les stores, avec un rapport par SMS matin, midi et soir.</p>
+            <div class="tags"><span class="tag">Arduino</span><span class="tag">capteurs</span><span class="tag">SMS</span><span class="tag">automatisme</span></div>
             <span class="more">Voir le projet <span>→</span></span>
           </div>
         </a>
@@ -1015,11 +1015,12 @@ footer .wrap{padding-block:24px;display:flex;flex-wrap:wrap;justify-content:spac
         ['Reste à payer', 'assets/media/tn-reste-a-payer.jpg'], ['CA par destination', 'assets/media/tn-ca-destination.jpg']] },
     soc: { kind: 'Cybersécurité · autoformation', title: 'Mes entraînements cyber', desc: "Challenges Root Me et TryHackMe, labo VirtualBox et OSINT, en route vers le métier d'analyste SOC.", tags: ['Root Me', 'TryHackMe', 'VirtualBox', 'OSINT'] },
     serre: { kind: 'IoT · Arduino', title: 'Serre automatique',
-      desc: "Une serre construite et câblée entièrement à la main, sans kit. Des capteurs mesurent l'humidité du sol et de l'air, la température et la luminosité ; l'Arduino déclenche l'arrosage quand la terre est trop sèche et envoie les mesures en temps réel. Une petite caméra permet de surveiller les plants à distance.",
+      desc: "Une serre construite et câblée entièrement à la main, sans kit. Des capteurs mesurent en continu l'humidité du sol et de l'air, la température et la luminosité, et l'Arduino agit pour garder chaque mesure dans la bonne plage pour chaque plant : il règle le goutte-à-goutte et ouvre ou ferme les stores. Un rapport part par SMS le matin, le midi et le soir, et une petite caméra permet de surveiller les plants.",
       facts: [['Capteurs', 'Humidité du sol, température et humidité de l\'air, luminosité'],
-        ['Action', 'Module relais qui commande une pompe et son réservoir, selon des seuils adaptés à chaque culture'],
-        ['Suivi', 'Mesures et état de l\'arrosage envoyés en temps réel, caméra pour voir les plants']],
-      tags: ['Arduino', 'C / C++', 'capteurs', 'électronique', 'temps réel'], url: 'serre-automatique · schéma',
+        ['Arrosage', 'Goutte-à-goutte piloté par relais : il s\'active quand la terre est trop sèche et se coupe quand elle est trop humide'],
+        ['Lumière', 'Stores motorisés qui s\'ouvrent ou se ferment quand la luminosité est trop faible ou trop forte'],
+        ['Suivi', 'Rapport par SMS matin, midi et soir pour vérifier que les mesures conviennent à chaque plant, caméra pour voir les plants']],
+      tags: ['Arduino', 'C / C++', 'capteurs', 'GSM / SMS', 'électronique', 'automatisme'], url: 'serre-automatique · schéma',
       pages: [['Schéma de câblage', 'assets/media/serre-schema.jpg']] },
     resto: { kind: 'Site web · projet de cours ESGI', title: 'Le Comptoir des Saveurs',
       desc: "Site vitrine one page d'un restaurant coréen raffiné, réalisé pour le TP noté du module HTML & CSS. Toute la mise en page est codée à la main, sans framework.",
