@@ -1,0 +1,452 @@
+/* ---------- 1. Polices (Google Fonts) ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@300;400;700&display=swap");
+
+/* ---------- 2. Palette de couleurs (variables) ---------- */
+:root {
+    --bois-fonce: #1b1410;   /* fond sombre */
+    --or: #c9a26b;           /* doré, couleur d'accent */
+    --creme: #f3ebe0;        /* texte clair */
+    --rouge: #a3242b;        /* rouge, rappel des sculptures de la photo */
+}
+
+/* ---------- 3. Remise à zéro ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;   /* défilement doux avec le menu */
+}
+
+body {
+    font-family: "Lato", Arial, sans-serif;
+    background-color: var(--bois-fonce);
+    color: var(--creme);
+    line-height: 1.6;
+}
+
+/*SECTION 1 : ACCUEIL */
+
+/* Le header occupe tout l'écran, le contenu est centré */
+#accueil {
+    position: relative;          /* repère pour placer l'image et la barre du haut */
+    min-height: 100vh;           /* 100 % de la hauteur de l'écran */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 60px 24px;
+    overflow: hidden;            /* rien ne dépasse */
+}
+
+/* L'image passe en fond, derrière tout le reste    */
+#accueil img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           /* remplit sans se déformer */
+    filter: brightness(0.4);     /* assombrit l'image pour que le texte soit lisible */
+    z-index: -1;                 /* derrière le texte */
+}
+
+/* Nom du restaurant : en haut à gauche */
+#accueil h1 {
+    position:absolute;
+    top: 10px;
+    left: 40px;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--or);
+    letter-spacing: 1px;
+}
+
+/* Menu : en haut à droite */
+#accueil nav {
+    position: absolute;
+    top: 34px;
+    right: 40px;
+}
+
+#accueil nav ul {
+    list-style: none;            /* enlève les puces */
+    display: flex;               /* liens à l'horizontale */
+    gap: 32px;
+}
+
+#accueil nav a {
+    color: var(--creme);
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+/* Effet au survol des liens du menu */
+#accueil nav a:hover {
+    color: var(--or);
+    border-bottom-color: var(--or);
+}
+
+/* Titre d'accroche */
+.accroche {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.1;
+    max-width: 900px;
+    color: var(--creme);
+}
+
+/* Petite phrase sous l'accroche */
+.sous-titre {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--or);
+}
+
+/* Bouton "Découvrir la carte" */
+.bouton {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 14px 36px;
+    border: 1px solid var(--or);
+    color: var(--or);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Effet au survol du bouton : il se remplit en doré */
+.bouton:hover {
+    background-color: var(--or);
+    color: var(--bois-fonce);
+}
+
+/* Petit texte doré au-dessus des titres de section */
+.sur-titre {
+    text-align: center;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--or);
+}
+
+/* Titres des sections (h2) */
+h2 {
+    text-align: center;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--creme);
+    margin-top: 8px;
+}
+
+/* Petit trait doré sous les titres */
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--or);
+    margin: 16px auto 0 auto;      /* centré */
+}
+
+/* Phrase d'introduction sous le titre */
+.intro-section {
+    max-width: 600px;
+    margin: 24px auto 0 auto;
+    text-align: center;
+    font-weight: 300;
+    color: #cfc4b5;
+}
+
+/* SECTION 3 : NOTRE CARTE */
+#carte {
+    padding: 100px 24px;
+    max-width: 1200px;
+    margin: 0 auto;     /* centre la section sur la page */
+}
+
+/* La grille : 3 colonnes de même largeur */
+.grille-carte {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+}
+
+/* Une carte de plat */
+.plat {
+    background-color: #241b16;     /* un peu plus clair que le fond de la page */
+    border: 1px solid #3a2c22;
+    overflow: hidden;             /* l'image zoomée ne dépasse pas */
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+/* Effet au survol : la carte monte légèrement et le contour devient doré */
+.plat:hover {
+    transform: translateY(-6px);
+    border-color: var(--or);
+}
+
+/* Photo du plat */
+.plat img {
+    display: block;
+    width: 100%;                   /* s'adapte à la largeur de la carte */
+    aspect-ratio: 1 / 1;           /* reste carrée */
+    object-fit: cover;             /* ne se déforme pas */
+    transition: transform 0.5s;
+}
+
+/* Au survol de la carte, la photo zoome doucement */
+.plat:hover img {
+    transform: scale(1.05);
+}
+
+/* Partie texte de la carte */
+.plat-texte {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Nom du plat */
+.plat h3 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--creme);
+}
+
+/* Description */
+.plat p {
+    font-size: 15px;
+    font-weight: 300;
+    color: #cfc4b5;
+}
+
+/* Prix */
+.plat .prix {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--or);
+}
+
+/* Prix en euros, affiché à côté du prix en wons */
+.prix-euro {
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #a89c8c;
+    margin-left: 8px;
+}
+
+/* Note sous la carte (banchan et kimchi offerts) */
+.note-carte {
+    max-width: 700px;
+    margin: 50px auto 0 auto;
+    padding: 20px 28px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: italic;
+    color: #cfc4b5;
+    border-top: 1px solid #3a2c22;
+    border-bottom: 1px solid #3a2c22;
+}
+
+.note-carte strong {
+    color: var(--or);
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/* SECTION 4 : GALERIE */
+
+#galerie {
+    padding: 100px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Disposition des images en 3 colonnes et gardent leurs proportions */
+.grille-galerie {
+    column-count: 3;
+    column-gap: 20px;
+    margin-top: 60px;
+}
+
+.grille-galerie img {
+    display: block;
+    width: 100%;                 /* prend la largeur de la colonne */
+    height: auto;                /* hauteur calculée automatiquement = proportions conservées */
+    margin-bottom: 20px;
+    break-inside: avoid;         /* une image n'est jamais coupée entre deux colonnes */
+    border: 1px solid #3a2c22;
+    filter: brightness(0.85);    /* légèrement assombries par défaut */
+    transition: filter 0.4s, transform 0.4s, border-color 0.4s;
+}
+
+/* Effet au survol : l'image s'éclaire et grossit légèrement */
+.grille-galerie img:hover {
+    filter: brightness(1);
+    transform: scale(1.02);
+    border-color: var(--or);
+}
+
+/* SECTION 2 : À PROPOS*/
+
+#a-propos {
+    padding: 100px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Texte à gauche, photo à droite */
+.a-propos-contenu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* 2 colonnes égales */
+    gap: 60px;
+    align-items: center;              /* centrés verticalement l'un par rapport à l'autre */
+    margin-top: 60px;
+}
+
+.a-propos-texte p {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #cfc4b5;
+    margin-bottom: 20px;
+}
+
+/* Dernière phrase mise en valeur */
+.a-propos-texte .signature {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--or);
+    margin-top: 30px;
+    margin-bottom: 0;
+    padding-left: 20px;
+    border-left: 2px solid var(--or);
+}
+
+/* Photo du restaurant */
+.a-propos-contenu img {
+    width: 100%;                      /* ne déborde jamais de sa colonne */
+    height: auto;                     /* garde ses proportions */
+    border: 1px solid #3a2c22;
+    box-shadow: 20px 20px 0 #241b16;  /* cadre décalé derrière la photo */
+}
+
+
+/* SECTION 5 : CONTACT */
+
+#contact {
+    padding: 100px 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Les deux blocs (coordonnées et horaires) côte à côte */
+.contact-contenu {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.contact-bloc {
+    width: 420px;
+    padding: 30px;
+    background-color: #241b16;
+    border: 1px solid #3a2c22;
+}
+
+.contact-bloc h3 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 26px;
+    color: #c9a26b;
+    margin-bottom: 16px;
+}
+
+.contact-bloc address {
+    font-style: normal;          /* enlève l'italique de la balise address */
+    line-height: 2;
+    color: #cfc4b5;
+}
+
+.horaires {
+    list-style: none;
+    line-height: 2;
+    color: #cfc4b5;
+}
+
+/* Liens téléphone, email et retour en haut */
+#contact a {
+    color: #c9a26b;
+    text-decoration: none;
+}
+
+#contact a:hover {
+    color: #f3ebe0;
+    text-decoration: underline;
+}
+
+.retour-haut {
+    margin-top: 50px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+/* PIED DE PAGE */
+
+footer {
+    text-align: center;
+    padding: 50px 24px;
+    border-top: 1px solid #3a2c22;
+    background-color: #140f0c;
+}
+
+.footer-nom {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #c9a26b;
+}
+
+.footer-slogan {
+    margin-top: 6px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #cfc4b5;
+}
+
+.footer-copyright {
+    margin-top: 24px;
+    font-size: 13px;
+    color: #8a7e70;
+}

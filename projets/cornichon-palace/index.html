@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <!-- Adapte l'affichage à la largeur de l'écran -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cornichon Palace - Accueil</title>
+
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap et CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+  
+<body>
+    <!-- ===== NAVIGATION ===== -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-cosmique sticky-top">
+            <div class="container">
+                <!-- Nom du site avec le petit cornichon qui tourne (css) -->
+                <a class="navbar-brand" href="index.html"><span class="cornichon-tournant">🥒</span> Cornichon Palace</a>
+                <!-- Bouton qui bascule entre le mode sombre et le mode clair -->
+                <button id="boutonTheme" class="btn btn-cosmique btn-sm ms-lg-3 mt-2 mt-lg-0" type="button" aria-pressed="true">Passer en mode clair</button>
+                <!-- Bouton hamburger pour mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Ouvrir le menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Contenu du menu -->
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <!-- Liens vers les 3 pages ; ms-auto pour les pousser à droite -->
+                    <ul class="navbar-nav ms-auto gap-lg-3">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="produits.html">Nos produits</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal de la page -->
+    <main>
+        <!-- ===== HERO ===== -->
+        <!-- Section principale (hero) : titre, slogan, bouton et image -->
+        <section class="hero">
+            <div class="container">
+                <!-- Grille Bootstrap : texte et image côte à côte sur ordi, l'un sous l'autre sur mobile -->
+                <div class="row align-items-center g-5">
+                    <!-- Colonne du texte (5 sur 12 pour pc), centrée sur mobile -->
+                    <div class="col-lg-5 text-center text-lg-start">
+                        <!-- Titre extravagant de la page -->
+                        <h1 class="hero-titre mb-4">Le cornichon qui vous envoie en orbite !</h1>
+                        <!-- Slogan commercial -->
+                        <p class="hero-slogan mb-4">Si bon que même le temps s'arrête.</p>
+                        <p class="mb-4">Depuis notre station spatiale, nous sélectionnons les cornichons les plus extraordinaires de la galaxie. Un seul croc, et vous quittez l'atmosphère.</p>
+                        <!-- Bouton qui mène à la page des produits -->
+                        <a href="produits.html" class="btn btn-cosmique btn-lg px-5 py-3">🚀 Découvrir nos produits</a>
+                    </div>
+                    <!-- Colonne de l'image (7 sur 12 sur pc) -->
+                    <div class="col-lg-7">
+                        <!-- img-fluid l'empêche de dépasser de son conteneur -->
+                        <img src="images/hero-cornichon.svg" class="img-fluid hero-image" alt="Un cornichon astronaute flotte dans l'espace entre une planète-cornichon, une lune et un trou noir">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PRODUITS VEDETTES ===== -->
+        <section class="section">
+            <div class="container">
+                <!-- Titre et phrase d'intro des produits vedettes -->
+                <h2 class="titre-section text-center mb-2">Produits vedettes</h2>
+                <p class="text-center mb-5">Les trois bocaux qui font décoller nos clients.</p>
+
+                <!-- Grille des produits : 1 par ligne sur mobile (col-12), 2 sur tablette (col-md-6), 3 sur ordinateur (col-lg-4) -->
+                <div class="row g-4">
+                    <!-- Colonne qui contient une carte produit -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <!-- h-100 = hauteur identique produit -->
+                        <article class="card carte-cornichon h-100">
+                            <!-- Image du produit en haut de la carte -->
+                            <img src="images/produit1.svg" class="card-img-top" alt="Bocal Gravité 0 : des cornichons en apesanteur">
+                            <!-- d-flex flex-column permet d'empiler les éléments verticalement -->
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="card-title">Gravité 0</h3>
+                                <p class="card-text">Des cornichons si légers qu'ils flottent hors du bocal. Croquant garanti, même sans pesanteur.</p>
+                                <!-- mt-auto = pousse en bas pour aligner prix et boutons des cartes -->
+                                <p class="prix mt-auto">19,90 €</p>
+                                <!-- Bouton « Découvrir » qui mène au catalogue -->
+                                <a href="produits.html" class="btn btn-cosmique">Découvrir</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card carte-cornichon h-100">
+                            <img src="images/produit2.svg" class="card-img-top" alt="Bocal Trou Noir : cornichons à l'ail noir devant un trou noir">
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="card-title">Trou Noir</h3>
+                                <p class="card-text">Cornichons à l'ail noir, d'une saveur si intense que même la lumière n'en ressort pas.</p>
+                                <p class="prix mt-auto">24,90 €</p>
+                                <a href="produits.html" class="btn btn-cosmique">Découvrir</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card carte-cornichon h-100">
+                            <img src="images/produit5.svg" class="card-img-top" alt="Bocal Supernova : cornichons pimentés devant une explosion d'étoile">
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="card-title">Supernova</h3>
+                                <p class="card-text">L'explosion d'une étoile dans votre bouche. Extra pimenté, réservé aux astronautes confirmés.</p>
+                                <p class="prix mt-auto">26,90 €</p>
+                                <a href="produits.html" class="btn btn-cosmique">Découvrir</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== AVANTAGES ===== -->
+        <section class="section">
+            <div class="container">
+                <!-- Titre section des avantages -->
+                <h2 class="titre-section text-center mb-5">Pourquoi nous choisir ?</h2>
+                <!-- Grille des 4 avantages : 2 par ligne sur mobile (col-6), 4 sur ordinateur (col-lg-3) -->
+                <div class="row g-4 text-center">
+                    <div class="col-6 col-lg-3">
+                        <!-- Bloc avantage ; la 2e classe (avantage-vert, -rose…) choisit sa couleur -->
+                        <div class="avantage avantage-vert">
+                            <!-- Icône décorative ; aria-hidden la cache aux lecteurs d'écran -->
+                            <span class="avantage-icone" aria-hidden="true">💎</span>
+                            <h3 class="mt-3">Qualité galactique</h3>
+                            <p class="mb-0">Cornichons cueillis à la main sur les meilleures planètes.</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="avantage avantage-rose">
+                            <span class="avantage-icone" aria-hidden="true">🚀</span>
+                            <h3 class="mt-3">Livraison supraluminique</h3>
+                            <p class="mb-0">Chez vous avant même d'avoir commandé.</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="avantage avantage-jaune">
+                            <span class="avantage-icone" aria-hidden="true">🧪</span>
+                            <h3 class="mt-3">Recettes d'un autre monde</h3>
+                            <p class="mb-0">Des saveurs encore inconnues sur Terre.</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="avantage avantage-cyan">
+                            <span class="avantage-icone" aria-hidden="true">🛰️</span>
+                            <h3 class="mt-3">Satisfaction (presque) garantie</h3>
+                            <p class="mb-0">Un service client joignable depuis toute la galaxie.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== PIED DE PAGE ===== -->
+    <!-- Pied de page commun aux 3 pages : coordonnées, liens et copyright -->
+    <footer class="pied-de-page py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h2>Cornichon Palace</h2>
+                    <!-- Coordonnées de l'entreprise -->
+                    <address class="mb-0">
+                        3ème planètede l'avenue de la Voie Lactée<br>
+                        Planète Terre - Voie lactée<br>
+                        3.141.592.6535<br>
+                        <a href="mailto:contact@cornichon-palace.example">contact@cornichon-palace.example</a>
+                    </address>
+                </div>
+                <div class="col-md-4">
+                    <h2>Navigation</h2>
+                    <!-- Liens de navigation (list-unstyled retire les puces) -->
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits.html">Nos produits</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2>Horaires</h2>
+                    <p class="mb-0">Ouvert 24 h/24, sur tous les fuseaux horaires de la galaxie.</p>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <p class="text-center small mt-4 mb-0">&copy; 2026 Cornichon Palace — Tous droits réservés dans cet univers et les autres.</p>
+        </div>
+    </footer>
+   
+
+    <!-- Bootstrap JS (inclut Popper : menu hamburger, modales...) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Récupère la balise <html> (qui porte data-bs-theme) et le bouton du thème
+        const html = document.documentElement;
+        const boutonTheme = document.getElementById("boutonTheme");
+
+        // Au clic : on inverse le thème et on met à jour le texte du bouton
+        boutonTheme.addEventListener("click", () => {
+            const estSombre = html.getAttribute("data-bs-theme") === "dark";
+            const nouveauTheme = estSombre ? "light" : "dark";
+
+            html.setAttribute("data-bs-theme", nouveauTheme);
+            boutonTheme.textContent = estSombre
+                ? "Passer en mode sombre"
+                : "Passer en mode clair";
+            boutonTheme.setAttribute("aria-pressed", String(nouveauTheme === "dark"));
+        });</script>
+</body>
+</html>

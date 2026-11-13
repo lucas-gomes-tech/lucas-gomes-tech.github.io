@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+<head>
+    <!-- Encodage des caractères : permet d'afficher correctement les accents -->
+    <meta charset="UTF-8">
+    <!-- Adapte l'affichage à la largeur de l'écran (indispensable pour le responsive) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titre affiché dans l'onglet du navigateur -->
+    <title>Cornichon Palace - Contact</title>
+
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap (installé en local avec npm) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- CSS commun aux 3 pages -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- ===== NAVIGATION ===== -->
+    <!-- En-tête du site, identique sur les 3 pages -->
+    <header>
+        <!-- Barre de navigation Bootstrap : en ligne sur ordinateur (navbar-expand-lg), menu hamburger sur mobile ; sticky-top la garde en haut au défilement -->
+        <nav class="navbar navbar-expand-lg navbar-cosmique sticky-top">
+            <div class="container">
+                <!-- Nom du site avec le petit cornichon qui tourne, cliquable pour revenir à l'accueil -->
+                <a class="navbar-brand" href="index.html"><span class="cornichon-tournant">🥒</span> Cornichon Palace</a>
+                <!-- Bouton qui bascule entre le mode sombre et le mode clair -->
+                <button id="boutonTheme" class="btn btn-cosmique btn-sm ms-lg-3 mt-2 mt-lg-0" type="button" aria-pressed="true">Passer en mode clair</button>
+                <!-- Bouton hamburger : visible seulement sur petit écran, il ouvre et ferme le menu -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Ouvrir le menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Contenu du menu, replié sur mobile (son id est la cible du bouton hamburger) -->
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <!-- Liens vers les 3 pages ; ms-auto les pousse à droite, la classe active indique la page en cours -->
+                    <ul class="navbar-nav ms-auto gap-lg-3">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="produits.html">Nos produits</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal de la page -->
+    <main>
+        <section class="section">
+            <div class="container">
+                <!-- Titre et introduction de la page -->
+                <h1 class="titre-section text-center mb-3">Contactez la station</h1>
+                <p class="text-center mb-5">Une question, une commande, une envie soudaine de cornichons ? Envoyez-nous un signal.</p>
+
+                <!-- Grille : formulaire et coordonnées côte à côte sur ordinateur, l'un sous l'autre sur mobile -->
+                <div class="row g-5">
+                    <!-- ===== FORMULAIRE ===== -->
+                    <!-- Colonne du formulaire (7 colonnes sur 12 sur grand écran) -->
+                    <div class="col-lg-7">
+                        <!-- Formulaire de contact ; action="#" car aucun envoi réel n'est demandé -->
+                        <form class="bloc-contact" action="#" method="post">
+                            <div class="mb-3">
+                                <!-- Champ nom et prénom : for/id relient le label au champ, required le rend obligatoire -->
+                                <label for="nomPrenom" class="form-label">Nom et prénom</label>
+                                <input type="text" class="form-control" id="nomPrenom" name="nomPrenom" placeholder="Jean-Michel Cornichon" required>
+                            </div>
+                            <div class="mb-3">
+                                <!-- Champ email : type="email" vérifie que l'adresse a un format valide -->
+                                <label for="email" class="form-label">Adresse email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="vous@exemple.fr" required>
+                            </div>
+                            <div class="mb-3">
+                                <!-- Liste déroulante du sujet : l'option vide désactivée oblige à faire un choix -->
+                                <label for="sujet" class="form-label">Sujet du message</label>
+                                <select class="form-select" id="sujet" name="sujet" required>
+                                    <option value="" selected disabled>Choisissez un sujet</option>
+                                    <option value="commande">Passer une commande</option>
+                                    <option value="livraison">Suivre une livraison</option>
+                                    <option value="partenariat">Proposer un partenariat</option>
+                                    <option value="autre">Autre demande</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <!-- Zone de texte pour le message -->
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="6" placeholder="Votre message pour la station..." required></textarea>
+                            </div>
+                            <!-- Case à cocher obligatoire pour accepter les conditions -->
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="conditions" name="conditions" required>
+                                <label class="form-check-label" for="conditions">J'accepte les conditions générales de Cornichon Palace</label>
+                            </div>
+                            <!-- Bouton d'envoi ; w-100 l'étire sur toute la largeur -->
+                            <button type="submit" class="btn btn-cosmique btn-lg w-100">📡 Envoyer le message</button>
+                        </form>
+                    </div>
+
+                    <!-- ===== COORDONNÉES ===== -->
+                    <!-- Colonne des coordonnées (5 colonnes sur 12 sur grand écran) -->
+                    <div class="col-lg-5">
+                        <div class="bloc-contact h-100">
+                            <h2 class="titre-section fs-4 mb-4">Nos coordonnées</h2>
+                            <!-- Coordonnées fictives de l'entreprise -->
+                            <ul class="list-unstyled coordonnees mb-4">
+                                <li>📍 <strong>Adresse :</strong><br>3ème planète de l'avenue de la Voie Lactée, Planète Terre - Voie lactée</li>
+                                <li>📞 <strong>Téléphone :</strong><br>3.141.592.6535</li>
+                                <li>✉️ <strong>Email :</strong><br><a href="mailto:contact@cornichon-palace.example" class="link-info">contact@cornichon-palace.example</a></li>
+                                <li>🕐 <strong>Horaires :</strong><br>24 h/24, 7 j/7, sur tous les fuseaux horaires de la galaxie</li>
+                            </ul>
+                            <!-- Image décorative sous les coordonnées -->
+                            <img src="images/produit6.svg" class="img-fluid rounded" alt="Bocal Lune de Miel devant une lune dorée">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== PIED DE PAGE ===== -->
+    <!-- Pied de page commun aux 3 pages : coordonnées, liens et copyright -->
+    <footer class="pied-de-page py-5 mt-5">
+        <div class="container">
+            <!-- Grille des produits : 1 par ligne sur mobile (col-12), 2 sur tablette (col-md-6), 3 sur ordinateur (col-lg-4) -->
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h2>Cornichon Palace</h2>
+                    <!-- Coordonnées fictives de l'entreprise -->
+                    <address class="mb-0">
+                        3ème planète de l'avenue de la Voie Lactée<br>
+                        Planète Terre - Voie lactée<br>
+                        3.141.592.6535<br>
+                        <a href="mailto:contact@cornichon-palace.example">contact@cornichon-palace.example</a>
+                    </address>
+                </div>
+                <div class="col-md-4">
+                    <h2>Navigation</h2>
+                    <!-- Liens de navigation (list-unstyled retire les puces) -->
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits.html">Nos produits</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2>Horaires</h2>
+                    <p class="mb-0">Ouvert 24 h/24, sur tous les fuseaux horaires de la galaxie.</p>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <p class="text-center small mt-4 mb-0">&copy; 2026 Cornichon Palace — Tous droits réservés dans cet univers et les autres.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS (inclut Popper : menu hamburger, modales...) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Récupère la balise <html> (qui porte data-bs-theme) et le bouton du thème
+        const html = document.documentElement;
+        const boutonTheme = document.getElementById("boutonTheme");
+
+        // Au clic : on inverse le thème et on met à jour le texte du bouton
+        boutonTheme.addEventListener("click", () => {
+            const estSombre = html.getAttribute("data-bs-theme") === "dark";
+            const nouveauTheme = estSombre ? "light" : "dark";
+
+            html.setAttribute("data-bs-theme", nouveauTheme);
+            boutonTheme.textContent = estSombre
+                ? "Passer en mode sombre"
+                : "Passer en mode clair";
+            boutonTheme.setAttribute("aria-pressed", String(nouveauTheme === "dark"));
+        });</script>
+</body>
+</html>

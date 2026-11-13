@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+<head>
+    <!-- Encodage des caractères : permet d'afficher correctement les accents -->
+    <meta charset="UTF-8">
+    <!-- Adapte l'affichage à la largeur de l'écran (indispensable pour le responsive) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titre affiché dans l'onglet du navigateur -->
+    <title>Cornichon Palace - Nos produits</title>
+
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap (installé en local avec npm) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- CSS commun aux 3 pages -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- ===== NAVIGATION ===== -->
+    <!-- En-tête du site, identique sur les 3 pages -->
+    <header>
+        <!-- Barre de navigation Bootstrap : en ligne sur ordinateur (navbar-expand-lg), menu hamburger sur mobile ; sticky-top la garde en haut au défilement -->
+        <nav class="navbar navbar-expand-lg navbar-cosmique sticky-top">
+            <div class="container">
+                <!-- Nom du site avec le petit cornichon qui tourne, cliquable pour revenir à l'accueil -->
+                <a class="navbar-brand" href="index.html"><span class="cornichon-tournant">🥒</span> Cornichon Palace</a>
+                <!-- Bouton qui bascule entre le mode sombre et le mode clair -->
+                <button id="boutonTheme" class="btn btn-cosmique btn-sm ms-lg-3 mt-2 mt-lg-0" type="button" aria-pressed="true">Passer en mode clair</button>
+                <!-- Bouton hamburger : visible seulement sur petit écran, il ouvre et ferme le menu -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Ouvrir le menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Contenu du menu, replié sur mobile (son id est la cible du bouton hamburger) -->
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <!-- Liens vers les 3 pages ; ms-auto les pousse à droite, la classe active indique la page en cours -->
+                    <ul class="navbar-nav ms-auto gap-lg-3">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="produits.html">Nos produits</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal de la page -->
+    <main>
+        <!-- ===== CATALOGUE ===== -->
+        <section class="section">
+            <div class="container">
+                <!-- Titre et introduction du catalogue -->
+                <h1 class="titre-section text-center mb-3">Nos produits</h1>
+                <p class="text-center mb-5 mx-auto" style="max-width: 650px;">Six bocaux venus des quatre coins de la galaxie. Chaque recette a été testée en apesanteur, sous des pluies de météorites et au bord d'un trou noir. Choisissez votre destination.</p>
+
+                <!-- 1 produit par ligne sur mobile, 2 sur tablette, 3 sur ordinateur -->
+                <div class="row g-4">
+                    <!-- Colonne qui contient une carte produit -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <!-- Carte Bootstrap d'un produit ; h-100 donne la même hauteur à toutes les cartes -->
+                        <article class="card carte-cornichon h-100">
+                            <!-- Image du produit en haut de la carte -->
+                            <img src="images/produit1.svg" class="card-img-top" alt="Bocal Gravité 0 : des cornichons qui flottent en apesanteur">
+                            <!-- Contenu de la carte ; d-flex flex-column empile les éléments verticalement -->
+                            <div class="card-body d-flex flex-column">
+                                <h2 class="card-title">Gravité 0</h2>
+                                <p class="card-text">Des cornichons si légers qu'ils flottent hors du bocal.</p>
+                                <!-- Prix ; mt-auto le pousse en bas pour aligner prix et boutons sur toutes les cartes -->
+                                <p class="prix mt-auto">19,90 €</p>
+                                <!-- Bouton qui ouvre la modale du produit : data-bs-target contient l'id de la modale à ouvrir -->
+                                <button type="button" class="btn btn-cosmique" data-bs-toggle="modal" data-bs-target="#modalProduit1">En savoir plus</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card carte-cornichon h-100">
+                            <img src="images/produit2.svg" class="card-img-top" alt="Bocal Trou Noir : cornichons à l'ail noir devant un trou noir">
+                            <div class="card-body d-flex flex-column">
+                                <h2 class="card-title">Trou Noir</h2>
+                                <p class="card-text">Cornichons à l'ail noir, d'une intensité absolue.</p>
+                                <p class="prix mt-auto">24,90 €</p>
+                                <button type="button" class="btn btn-cosmique" data-bs-toggle="modal" data-bs-target="#modalProduit2">En savoir plus</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card carte-cornichon h-100">
+                            <img src="images/produit3.svg" class="card-img-top" alt="Bocal Nébuleuse : cornichons roses et violets lumineux">
+                            <div class="card-body d-flex flex-column">
+                                <h2 class="card-title">Nébuleuse</h2>
+                                <p class="card-text">Des cornichons aigre-doux aux couleurs d'une nébuleuse.</p>
+                                <p class="prix mt-auto">22,90 €</p>
+                                <button type="button" class="btn btn-cosmique" data-bs-toggle="modal" data-bs-target="#modalProduit3">En savoir plus</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card carte-cornichon h-100">
+                            <img src="images/produit4.svg" class="card-img-top" alt="Bocal Saturne : rondelles de cornichon en orbite autour du bocal">
+                            <div class="card-body d-flex flex-column">
+                                <h2 class="card-title">Saturne</h2>
+                                <p class="card-text">Des rondelles parfaites, alignées comme les anneaux de Saturne.</p>
+                                <p class="prix mt-auto">17,90 €</p>
+                                <button type="button" class="btn btn-cosmique" data-bs-toggle="modal" data-bs-target="#modalProduit4">En savoir plus</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card carte-cornichon h-100">
+                            <img src="images/produit5.svg" class="card-img-top" alt="Bocal Supernova : cornichons pimentés devant l'explosion d'une étoile">
+                            <div class="card-body d-flex flex-column">
+                                <h2 class="card-title">Supernova</h2>
+                                <p class="card-text">L'explosion d'une étoile dans votre bouche.</p>
+                                <p class="prix mt-auto">26,90 €</p>
+                                <button type="button" class="btn btn-cosmique" data-bs-toggle="modal" data-bs-target="#modalProduit5">En savoir plus</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card carte-cornichon h-100">
+                            <img src="images/produit6.svg" class="card-img-top" alt="Bocal Lune de Miel : cornichons au miel devant une lune dorée">
+                            <div class="card-body d-flex flex-column">
+                                <h2 class="card-title">Lune de Miel</h2>
+                                <p class="card-text">Une douceur dorée récoltée sous la pleine lune.</p>
+                                <p class="prix mt-auto">29,90 €</p>
+                                <button type="button" class="btn btn-cosmique" data-bs-toggle="modal" data-bs-target="#modalProduit6">En savoir plus</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== PIED DE PAGE ===== -->
+    <!-- Pied de page commun aux 3 pages : coordonnées, liens et copyright -->
+    <footer class="pied-de-page py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h2>Cornichon Palace</h2>
+                    <!-- Coordonnées fictives de l'entreprise -->
+                    <address class="mb-0">
+                        3ème planètede l'avenue de la Voie Lactée<br>
+                        Planète Terre - Voie lactée<br>
+                        3.141.592.6535<br>
+                        <a href="mailto:contact@cornichon-palace.example">contact@cornichon-palace.example</a>
+                    </address>
+                </div>
+                <div class="col-md-4">
+                    <h2>Navigation</h2>
+                    <!-- Liens de navigation (list-unstyled retire les puces) -->
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits.html">Nos produits</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h2>Horaires</h2>
+                    <p class="mb-0">Ouvert 24 h/24, sur tous les fuseaux horaires de la galaxie.</p>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <p class="text-center small mt-4 mb-0">&copy; 2026 Cornichon Palace — Tous droits réservés dans cet univers et les autres.</p>
+        </div>
+    </footer>
+
+    <!-- ===== FENÊTRES MODALES (une par produit) ===== -->
+    <!-- Modale cachée par défaut ; son id doit être le même que le data-bs-target du bouton, fade ajoute l'animation -->
+    <div class="modal fade" id="modalProduit1" tabindex="-1" aria-labelledby="titreModal1" aria-hidden="true">
+        <!-- Taille et position de la fenêtre : centrée verticalement et en grand format -->
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <!-- En-tête de la modale : nom du produit et croix de fermeture -->
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="titreModal1">Gravité 0</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <!-- Corps de la modale : image et description détaillée côte à côte -->
+                <div class="modal-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-5">
+                            <img src="images/produit1.svg" class="img-fluid rounded" alt="Bocal Gravité 0 : des cornichons qui flottent en apesanteur">
+                        </div>
+                        <div class="col-md-7">
+                            <p>Cultivés à bord de notre station orbitale, ces cornichons ont grandi sans aucune pesanteur. Résultat : une chair d'une légèreté absolue et un croquant qui défie la physique. Ouvrez le bocal avec précaution, ils ont tendance à s'échapper.</p>
+                            <ul>
+                            <li>Bocal de 350 g</li>
+                            <li>Saumure à l'aneth lunaire</li>
+                            <li>Idéal pour l'apéritif en apesanteur</li>
+                            </ul>
+                            <p class="prix mb-0">19,90 €</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pied de la modale : bouton pour fermer et bouton pour commander -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fermer</button>
+                    <a href="contact.html" class="btn btn-cosmique">Commander</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalProduit2" tabindex="-1" aria-labelledby="titreModal2" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="titreModal2">Trou Noir</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-5">
+                            <img src="images/produit2.svg" class="img-fluid rounded" alt="Bocal Trou Noir : cornichons à l'ail noir devant un trou noir">
+                        </div>
+                        <div class="col-md-7">
+                            <p>Affinés au bord de l'horizon des événements, ces cornichons à l'ail noir ont une saveur si dense que même la lumière ne s'en échappe pas. Une heure de dégustation équivaut à sept ans de bonheur.</p>
+                            <ul>
+                            <li>Bocal de 300 g</li>
+                            <li>Ail noir fermenté 60 jours</li>
+                            <li>Goût profond, légèrement sucré</li>
+                            </ul>
+                            <p class="prix mb-0">24,90 €</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fermer</button>
+                    <a href="contact.html" class="btn btn-cosmique">Commander</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalProduit3" tabindex="-1" aria-labelledby="titreModal3" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="titreModal3">Nébuleuse</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-5">
+                            <img src="images/produit3.svg" class="img-fluid rounded" alt="Bocal Nébuleuse : cornichons roses et violets lumineux">
+                        </div>
+                        <div class="col-md-7">
+                            <p>Marinés dans un nuage de poussière d'étoiles, ces cornichons prennent des reflets roses et violets uniques. Leur saveur aigre-douce vous fera voir des galaxies entières.</p>
+                            <ul>
+                            <li>Bocal de 350 g</li>
+                            <li>Marinade betterave et vinaigre de framboise</li>
+                            <li>Couleur 100 % naturelle (sur notre planète)</li>
+                            </ul>
+                            <p class="prix mb-0">22,90 €</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fermer</button>
+                    <a href="contact.html" class="btn btn-cosmique">Commander</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalProduit4" tabindex="-1" aria-labelledby="titreModal4" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="titreModal4">Saturne</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-5">
+                            <img src="images/produit4.svg" class="img-fluid rounded" alt="Bocal Saturne : rondelles de cornichon en orbite autour du bocal">
+                        </div>
+                        <div class="col-md-7">
+                            <p>Chaque cornichon est découpé en rondelles d'une précision astronomique, puis placé en orbite dans son bocal. Parfait pour les burgers, les sandwichs et les dîners interplanétaires.</p>
+                            <ul>
+                            <li>Bocal de 400 g</li>
+                            <li>Rondelles de 3 mm exactement</li>
+                            <li>Spécial burgers et sandwichs</li>
+                            </ul>
+                            <p class="prix mb-0">17,90 €</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fermer</button>
+                    <a href="contact.html" class="btn btn-cosmique">Commander</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalProduit5" tabindex="-1" aria-labelledby="titreModal5" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="titreModal5">Supernova</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-5">
+                            <img src="images/produit5.svg" class="img-fluid rounded" alt="Bocal Supernova : cornichons pimentés devant l'explosion d'une étoile">
+                        </div>
+                        <div class="col-md-7">
+                            <p>Pimentés au cœur d'une étoile en fin de vie, ces cornichons libèrent une chaleur de plusieurs millions de degrés (environ). À réserver aux astronautes confirmés, avec un grand verre de lait à portée de main.</p>
+                            <ul>
+                            <li>Bocal de 300 g</li>
+                            <li>Piment habanero et poivre de Sichuan</li>
+                            <li>Niveau de piquant : 5 étoiles sur 5</li>
+                            </ul>
+                            <p class="prix mb-0">26,90 €</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fermer</button>
+                    <a href="contact.html" class="btn btn-cosmique">Commander</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalProduit6" tabindex="-1" aria-labelledby="titreModal6" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="titreModal6">Lune de Miel</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-5">
+                            <img src="images/produit6.svg" class="img-fluid rounded" alt="Bocal Lune de Miel : cornichons au miel devant une lune dorée">
+                        </div>
+                        <div class="col-md-7">
+                            <p>Notre édition la plus luxueuse : des cornichons confits au miel, récolté uniquement les nuits de pleine lune. Un mariage sucré-salé si réussi qu'on l'offre aux jeunes mariés de toute la galaxie.</p>
+                            <ul>
+                            <li>Bocal de 350 g</li>
+                            <li>Miel de fleurs lunaires</li>
+                            <li>Édition limitée</li>
+                            </ul>
+                            <p class="prix mb-0">29,90 €</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fermer</button>
+                    <a href="contact.html" class="btn btn-cosmique">Commander</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (inclut Popper : menu hamburger, modales...) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Récupère la balise <html> (qui porte data-bs-theme) et le bouton du thème
+        const html = document.documentElement;
+        const boutonTheme = document.getElementById("boutonTheme");
+
+        // Au clic : on inverse le thème et on met à jour le texte du bouton
+        boutonTheme.addEventListener("click", () => {
+            const estSombre = html.getAttribute("data-bs-theme") === "dark";
+            const nouveauTheme = estSombre ? "light" : "dark";
+
+            html.setAttribute("data-bs-theme", nouveauTheme);
+            boutonTheme.textContent = estSombre
+                ? "Passer en mode sombre"
+                : "Passer en mode clair";
+            boutonTheme.setAttribute("aria-pressed", String(nouveauTheme === "dark"));
+        });</script>
+</body>
+</html>
