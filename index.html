@@ -313,7 +313,7 @@ h2{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(32px,4.4v
 .tabs button{border:1px solid var(--line);background:none;color:var(--muted);font:500 13px var(--body);padding:8px 14px;border-radius:999px;min-height:36px;transition:background .25s,color .25s,border-color .25s}
 .tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 :root[data-look="cyber"] .tabs button{border-radius:4px;font-family:var(--mono)}
-.big-view{height:min(68vh,640px);overflow-y:auto;background:var(--v-bg)}
+.big-view{max-height:min(68vh,640px);overflow-y:auto;background:var(--v-bg)}
 .big-view img{width:100%;display:block}
 .scroll-hint{font-family:var(--mono);font-size:12px;color:var(--muted)}
 .soon{border:1px dashed var(--line);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:10px;background:var(--card)}
@@ -543,26 +543,32 @@ footer .wrap{padding-block:24px;display:flex;flex-wrap:wrap;justify-content:spac
           </div>
         </a>
         <a class="card tilt" href="#projets">
-          <div class="visual v-rpgi" id="rpgi" aria-hidden="true"></div>
+          <div class="visual v-web" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><span class="url">rpgi · royaume d'Esgaria</span></div>
+              <div class="viewport"><video src="assets/media/rpgi.mp4" poster="assets/media/rpgi-poster.jpg" muted loop playsinline preload="metadata"></video></div>
+            </div>
+          </div>
           <div class="card-body">
             <span class="kind">Jeu web · projet de promo</span>
             <h3>RPGi</h3>
-            <p>Jeu web médiéval-fantastique pour ma promotion : classes, panoplies, donjons, raids et PvP.</p>
-            <div class="tags"><span class="tag todo">[techno]</span><span class="tag todo">[techno]</span><span class="tag">game design</span></div>
+            <p>Jeu de rôle web pour ma promotion : 6 classes, 100 étages de donjon, raids, arène PvP, guildes et hôtel des ventes.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">JavaScript</span><span class="tag">Docker</span></div>
             <span class="more">Voir le projet <span>→</span></span>
           </div>
         </a>
         <a class="card tilt" href="#projets">
-          <div class="visual v-travel" aria-hidden="true"><pre class="code"><span class="k">SELECT</span> d.pays, <span class="k">COUNT</span>(*) <span class="k">AS</span> nb
-<span class="k">FROM</span> reservation r
-<span class="k">JOIN</span> destination d <span class="k">ON</span> d.id = r.dest_id
+          <div class="visual v-travel" aria-hidden="true"><pre class="code"><span class="k">SELECT</span> s.destination,
+       <span class="k">SUM</span>(lr.quantite * lr.prix_unitaire) <span class="k">AS</span> ca
+<span class="k">FROM</span> ligne_reservation lr
+<span class="k">JOIN</span> service s <span class="k">ON</span> s.id_service = lr.id_service
 <span class="k">WHERE</span> r.statut = <span class="s">'confirmée'</span>
-<span class="k">GROUP BY</span> d.pays <span class="k">ORDER BY</span> nb <span class="k">DESC</span>;</pre></div>
+<span class="k">GROUP BY</span> s.destination <span class="k">ORDER BY</span> ca <span class="k">DESC</span>;</pre></div>
           <div class="card-body">
             <span class="kind">Data · projet de cours</span>
             <h3>TravelNow</h3>
             <p>Modélisation (MCD) et requêtes SQL pour la base de données d'une agence de voyage, présentées en soutenance.</p>
-            <div class="tags"><span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">MCD</span></div>
+            <div class="tags"><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">MCD</span></div>
             <span class="more">Voir le projet <span>→</span></span>
           </div>
         </a>
@@ -644,7 +650,7 @@ footer .wrap{padding-block:24px;display:flex;flex-wrap:wrap;justify-content:spac
     <div class="wrap">
       <div class="skills">
         <div><h3>Langages</h3><p>C / C++, Python, Java, SQL, JavaScript, PHP</p></div>
-        <div><h3>Web &amp; data</h3><p>HTML / CSS, Bootstrap, MySQL, modélisation MCD</p></div>
+        <div><h3>Web &amp; data</h3><p>HTML / CSS, Bootstrap, PostgreSQL, MySQL, modélisation MCD</p></div>
         <div><h3>Systèmes &amp; réseaux</h3><p>Windows Server, AD / DNS / DHCP, TCP/IP, Cisco, VirtualBox, GLPI</p></div>
         <div><h3>Cyber &amp; embarqué</h3><p>OSINT, Root Me, TryHackMe, Arduino, capteurs</p></div>
         <div><h3>IA (en formation)</h3><p>LLM, agents IA, prompt engineering, RAG, MCP</p></div>
@@ -916,7 +922,7 @@ footer .wrap{padding-block:24px;display:flex;flex-wrap:wrap;justify-content:spac
 
   /* ---------- contenus générés ---------- */
   const rp = document.getElementById('rpgi');
-  for (let i = 0; i < 60; i++) {
+  if (rp) for (let i = 0; i < 60; i++) {
     const s = document.createElement('i');
     const col = i % 12, row = Math.floor(i / 12);
     const sword = (col === row + 3) || (col === 7 && row === 3) || (col === 8 && row === 4) || (col === 6 && row === 4);
@@ -982,16 +988,39 @@ footer .wrap{padding-block:24px;display:flex;flex-wrap:wrap;justify-content:spac
       pages: [['Site de présentation', 'assets/media/cadence-site-poster.jpg', 'assets/media/cadence-site.mp4', 'cadence · site de présentation']] },
     reseau: { kind: 'Infrastructure · projets de cours ESGI', title: 'Réseau & gestion de parc',
       desc: "Deux projets d'infrastructure à l'ESGI : la mise en place des services DHCP et DNS sur une architecture réseau simulée dans Cisco Packet Tracer, puis le déploiement d'une gestion de parc avec GLPI, présentée à une DSI.",
-      facts: [['Réseau', 'Adressage, serveur DHCP, résolution DNS, tests depuis les postes clients'], ['Gestion de parc', 'Inventaire du matériel, suivi des tickets d\'incident avec GLPI'], ['Rendu', 'Document technique, présentation et oral devant la DSI']],
-      tags: ['Cisco Packet Tracer', 'DHCP', 'DNS', 'GLPI', 'TCP/IP'] },
+      facts: [['Réseau', 'LAN 192.168.1.0/24 en étoile : routeur passerelle, switch, serveur DHCP/DNS, serveur web et postes clients en DHCP'], ['Analyse', 'Échanges DHCP (Discover, Offer, Request, Ack), DNS puis HTTP observés pas à pas en mode Simulation'], ['Gestion de parc', 'Inventaire du matériel, suivi des tickets d\'incident avec GLPI'], ['Rendu', 'Document technique, présentation et oral devant la DSI']],
+      tags: ['Cisco Packet Tracer', 'DHCP', 'DNS', 'GLPI', 'TCP/IP'], url: 'TP Services DHCP et DNS.pkt',
+      pages: [['Topologie et simulation', 'assets/media/reseau-packet-tracer.jpg']] },
     cv: { kind: 'Curriculum vitae', title: 'Mon CV', desc: "Mon CV généraliste, en français et en anglais.",
       tags: ['Cybersécurité', 'IA', 'Data', 'Gestion de projet'], url: 'CV-Lucas-Gomes.pdf', download: true,
       link: 'cv/CV-Lucas-Gomes-FR.pdf', linkLabel: 'Télécharger en français ↓', link2: 'cv/CV-Lucas-Gomes-EN.pdf', link2Label: 'Download in English ↓',
       pages: [['Français', 'assets/media/cv-fr.jpg', '', 'CV-Lucas-Gomes-FR.pdf'], ['English', 'assets/media/cv-en.jpg', '', 'CV-Lucas-Gomes-EN.pdf']] },
-    rpgi: { kind: 'Jeu web · projet de promo', title: 'RPGi', desc: 'Jeu web médiéval-fantastique pour ma promotion : classes, panoplies, donjons, raids et PvP.', tags: ['[techno]', '[techno]', 'game design'] },
-    travelnow: { kind: 'Data · projet de cours', title: 'TravelNow', desc: "Modélisation (MCD) et requêtes SQL pour la base de données d'une agence de voyage, présentées en soutenance.", tags: ['SQL', 'MySQL', 'MCD'] },
+    rpgi: { kind: 'Jeu web · projet personnel pour ma promo', title: 'RPGi',
+      desc: "Un jeu de rôle web dans le royaume d'Esgaria, réservé aux étudiants de ma promotion, inspiré de Shakes & Fidget et de La Brute. Du PvE sans temps d'attente (donjons et raids), une arène PvP, des guildes et une économie entre joueurs. Connexion avec Discord, réservée aux membres du serveur de la promo.",
+      facts: [['Contenu', '6 classes (tank, mêlée, distance, mage, soigneur), 10 régions et 100 étages de donjon, raids en groupe, arène classée, talents, métiers, familiers'],
+        ['Serveur', 'Python, FastAPI, SQLAlchemy et PostgreSQL : combats, butins et achats sont calculés côté serveur, rien ne peut être triché depuis le navigateur'],
+        ['Interface', 'HTML, CSS et JavaScript sans framework'],
+        ['Sécurité', 'Connexion OAuth Discord, cookies de session signés, protection CSRF, limites de débit, verrouillage des transactions en base'],
+        ['Déploiement', 'Docker Compose avec PostgreSQL et Caddy (HTTPS automatique), sauvegardes quotidiennes, tests automatisés avec pytest']],
+      tags: ['Python', 'FastAPI', 'PostgreSQL', 'JavaScript', 'Docker', 'OAuth', 'game design'], url: "rpgi · royaume d'Esgaria",
+      pages: [['Partie en vidéo', 'assets/media/rpgi-poster.jpg', 'assets/media/rpgi.mp4'], ['Héros', 'assets/media/rpgi-heros.jpg'], ['Donjon', 'assets/media/rpgi-donjon.jpg'], ['Combat', 'assets/media/rpgi-combat.jpg'],
+        ['Raid', 'assets/media/rpgi-raid.jpg'], ['Arène PvP', 'assets/media/rpgi-arene.jpg'], ['Talents', 'assets/media/rpgi-talents.jpg'], ['Sac', 'assets/media/rpgi-sac.jpg']] },
+    travelnow: { kind: 'Data · projet de cours ESGI', title: 'TravelNow',
+      desc: "La base de données d'une agence de voyage : les clients créent un compte, réservent un voyage composé de plusieurs services (vol, hébergement, activité) et le paient en une ou plusieurs fois. Du besoin métier au modèle conceptuel, puis aux tables PostgreSQL et aux requêtes, présentés en soutenance devant le « client ».",
+      facts: [['Modélisation', 'MCD Merise : utilisateur, réservation, service, paiement, avec une association porteuse (quantité, prix appliqué)'],
+        ['Base', 'PostgreSQL : clés primaires et étrangères, contraintes CHECK, montants en NUMERIC'],
+        ['Requêtes', 'Jointures, LEFT JOIN, agrégats GROUP BY, filtres sur une période, suivi des acomptes et du reste à payer']],
+      tags: ['SQL', 'PostgreSQL', 'MCD', 'Merise'], url: 'travelnow · PostgreSQL',
+      pages: [['MCD', 'assets/media/tn-mcd.jpg'], ['Réservations d\'un client', 'assets/media/tn-reservations-client.jpg'], ['Synthèse par client', 'assets/media/tn-synthese-clients.jpg'],
+        ['Reste à payer', 'assets/media/tn-reste-a-payer.jpg'], ['CA par destination', 'assets/media/tn-ca-destination.jpg']] },
     soc: { kind: 'Cybersécurité · autoformation', title: 'Mes entraînements cyber', desc: "Challenges Root Me et TryHackMe, labo VirtualBox et OSINT, en route vers le métier d'analyste SOC.", tags: ['Root Me', 'TryHackMe', 'VirtualBox', 'OSINT'] },
-    serre: { kind: 'IoT · Arduino', title: 'Serre automatique', desc: "Capteurs d'humidité, de température et de luminosité qui pilotent l'arrosage, avec envoi des données en temps réel.", tags: ['Arduino', 'capteurs', 'temps réel'] },
+    serre: { kind: 'IoT · Arduino', title: 'Serre automatique',
+      desc: "Une serre construite et câblée entièrement à la main, sans kit. Des capteurs mesurent l'humidité du sol et de l'air, la température et la luminosité ; l'Arduino déclenche l'arrosage quand la terre est trop sèche et envoie les mesures en temps réel. Une petite caméra permet de surveiller les plants à distance.",
+      facts: [['Capteurs', 'Humidité du sol, température et humidité de l\'air, luminosité'],
+        ['Action', 'Module relais qui commande une pompe et son réservoir, selon des seuils adaptés à chaque culture'],
+        ['Suivi', 'Mesures et état de l\'arrosage envoyés en temps réel, caméra pour voir les plants']],
+      tags: ['Arduino', 'C / C++', 'capteurs', 'électronique', 'temps réel'], url: 'serre-automatique · schéma',
+      pages: [['Schéma de câblage', 'assets/media/serre-schema.jpg']] },
     resto: { kind: 'Site web · projet de cours ESGI', title: 'Le Comptoir des Saveurs',
       desc: "Site vitrine one page d'un restaurant coréen raffiné, réalisé pour le TP noté du module HTML & CSS. Toute la mise en page est codée à la main, sans framework.",
       facts: [['Structure', 'Une seule page : accueil, à propos, carte, galerie, contact'], ['Technos', 'HTML5 et CSS3, sans framework'], ['Points forts', 'Ambiance sombre et dorée, carte de six plats, galerie photo']],
@@ -1032,7 +1061,11 @@ footer .wrap{padding-block:24px;display:flex;flex-wrap:wrap;justify-content:spac
       const show = i => { const [, img, vid, u] = p.pages[i]; view.replaceChildren(); view.scrollTop = 0; url.textContent = u || p.url;
         if (vid) { const v = el('video'); v.src = vid; v.poster = img; v.muted = true; v.loop = true; v.playsInline = true; v.controls = true; v.autoplay = !reduce;
           view.append(v); view.classList.add('vid'); if (!reduce) v.play().catch(() => {}); hint.textContent = '▶ Défilement enregistré sur le vrai site'; }
-        else { const im = el('img'); im.src = img; im.alt = p.title + ', ' + p.pages[i][0]; view.append(im); view.classList.remove('vid'); hint.textContent = '↕ Fais défiler pour tout voir'; }
+        else { const im = el('img'); im.src = img; im.alt = p.title + ', ' + p.pages[i][0]; view.append(im);
+          /* clic : image en taille réelle dans un nouvel onglet */
+          im.style.cursor = 'zoom-in'; im.title = 'Ouvrir en grand'; im.addEventListener('click', () => window.open(img, '_blank', 'noopener')); view.classList.remove('vid');
+          hint.textContent = (p.pages.length > 1 ? '◧ Change de vue avec les onglets · ' : '') + '🔍 Clique sur l\'image pour l\'agrandir';
+          im.addEventListener('load', () => { if (view.scrollHeight > view.clientHeight + 4) hint.textContent = '↕ Fais défiler pour tout voir'; }); }
         tabs && tabs.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-pressed', String(i === j))); };
       let tabs = null;
       if (p.pages.length > 1) {
